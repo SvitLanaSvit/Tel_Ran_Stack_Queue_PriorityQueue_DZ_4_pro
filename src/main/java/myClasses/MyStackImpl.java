@@ -25,6 +25,7 @@ public class MyStackImpl<T> implements MyStack<T> {
 
     @Override
     public boolean empty() {
+
         return vector.isEmpty();
     }
 

@@ -3,6 +3,7 @@ package start;
 import myClasses.MyPriorityQueueImpl;
 import myClasses.MyQueueImpl;
 import myClasses.MyStackImpl;
+import myClasses.MyStackImplObj;
 import myInterface.MyQueue;
 import myInterface.MyStack;
 
@@ -76,5 +77,21 @@ public class Main {
         System.out.println(priorityQueue.poll());
         System.out.println("Peek : " + priorityQueue.peek());
         System.out.println(priorityQueue.poll());
+
+        System.out.println("----MyStack with Object[]---");
+        MyStackImplObj<Integer> stackObj = new MyStackImplObj<>();
+        stackObj.push(5);
+        stackObj.push(8);
+        stackObj.push(1);
+        stackObj.push(10);
+        stackObj.push(22);
+        stackObj.push(87);
+        stackObj.push(9);
+        stackObj.push(6);
+        stackObj.push(4);
+        stackObj.push(8);
+        stackObj.push(-1);
+
+        System.out.println(stackObj);
     }
 }
