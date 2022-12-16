@@ -1,25 +1,42 @@
 package myClasses;
-import myInterface.MyStack;
+
+import myInterface.MyQueue;
+
 import java.util.Arrays;
 import java.util.EmptyStackException;
 
-public class MyStackImplObj<T> implements MyStack<T> {
+public class MyQueueImplObj<T> implements MyQueue<T> {
     private Object[] obj;
-    private  int pointer;
+    private int pointer;
     private static int DEFAULT_SIZE = 10;
 
-    public MyStackImplObj(){
+    public MyQueueImplObj(){
         obj = new Object[DEFAULT_SIZE];
         pointer = -1;
     }
-
     @Override
-    public T push(T el) {
+    public boolean add(T el) {
+        int count = pointer;
+        if (el == null)
+            throw new NullPointerException();
         if(pointer >= DEFAULT_SIZE - 1){
             growArray();
         }
         obj[++pointer] = el;
-        return el;
+        return count + 1 == pointer;
+    }
+
+    @Override
+    public T remove() {
+        if(isEmpty()) {
+            throw new EmptyStackException();
+        }
+        T objEl = (T) obj[0];
+        for (int i = 0, j = 1; i <= pointer; i++, j++) {
+            obj[i] = obj[j];
+        }
+        pointer--;
+        return objEl;
     }
 
     private void growArray(){
@@ -28,18 +45,14 @@ public class MyStackImplObj<T> implements MyStack<T> {
     }
 
     @Override
-    public T pop() {
-        if(empty()){
+    public T element() {
+        if(isEmpty()) {
             throw new EmptyStackException();
         }
-        T objPop = (T) obj[pointer];
-        obj[pointer] = null;
-        pointer--;
-        return objPop;
+        return (T) obj[0];
     }
 
-    @Override
-    public boolean empty() {
+    private boolean isEmpty(){
         return pointer == -1;
     }
 

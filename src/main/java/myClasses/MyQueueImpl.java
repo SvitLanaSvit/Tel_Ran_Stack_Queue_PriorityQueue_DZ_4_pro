@@ -31,8 +31,7 @@ public class MyQueueImpl<T> implements MyQueue<T> {
         if(list.isEmpty()) {
             throw new EmptyStackException();
         }
-        T el = list.get(0);
-        return el;
+        return list.get(0);
     }
 
     @Override
